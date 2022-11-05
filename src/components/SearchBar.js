@@ -1,5 +1,4 @@
-import React, {Component, useRef} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { Component } from 'react';
 
  export default class SearchBar extends Component {
 
@@ -13,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
   
   handleSubmit = e => {
     e.preventDefault();
-    //invoke the performSeach function that fetches data
+    //invoke the onserach function that fetches data
     this.props.onSearch(this.query.value); 
     e.currentTarget.reset();
   }
@@ -37,13 +36,4 @@ import { useNavigate } from 'react-router-dom';
       </form>
     );
   }
-}
-
-export function SearchBarWithRoutes(props){
-  const navigate = useNavigate(); 
-  const userInput = useRef(); 
-
-  return (
-    <SearchBar navigate={navigate} userInput={userInput} />
-  )
 }
