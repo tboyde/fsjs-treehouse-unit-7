@@ -8,7 +8,7 @@ import Photo from "./Photo";
 import NotFound from './NotFound';
 
 //importing api key
-import apiKey from "../configure";
+import apiKey from '../config'; 
 
 const PhotoList = (props) => {
     //setting state for search results and photo data 
