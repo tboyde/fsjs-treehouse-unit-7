@@ -1,12 +1,12 @@
 import React from "react";
 
-const Photo = ({photo, key}) => {
+const Photo = ({photoInfo}) => {
     return (
             <li>
                 <img 
-                key={photo.key}
-                src= {`https://farm5.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} 
-                alt={photo.title}
+                key={photoInfo.index}
+                src= {`https://farm5.staticflickr.com/${photoInfo.server}/${photoInfo.id}_${photoInfo.secret}.jpg`} 
+                alt={photoInfo.title}
                  />
             </li>
     )

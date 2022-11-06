@@ -1,22 +1,22 @@
 import { NavLink } from 'react-router-dom'; 
 
 
-const Nav = ({lookUp}) => {
+const Nav = () => {
     return (
         <nav className="main-nav">
         <ul>
           <li>
-            <NavLink to="/dancing" onClick={() => lookUp("dancing")}>
+            <NavLink to="/dancing">
               Dancing
             </NavLink>
           </li>
           <li>
-            <NavLink to="/acting" onClick={() => lookUp("acting")}>
+            <NavLink to="/acting">
               Acting
             </NavLink>
           </li>
           <li>
-            <NavLink to="/painting" onClick={() => lookUp("painting")}>
+            <NavLink to="/painting">
               Painting
             </NavLink>
           </li>

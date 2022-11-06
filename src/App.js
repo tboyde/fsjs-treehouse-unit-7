@@ -16,6 +16,8 @@ return (
   <div className='container'>
   <SearchBar /> 
   <Nav />
+  <div className="photo-list">
+    <h2>Results</h2>
   <Routes>
     <Route path="/" element={<Navigate to="/dancing" />}/>
     <Route path="/dancing" element={<PhotoList triggerSearchFor="dancing"  />} />
@@ -25,6 +27,7 @@ return (
     <Route path="*" element={<NotFound />} />
   </Routes>
   </div>
+</div>
 </>
 ); 
 
