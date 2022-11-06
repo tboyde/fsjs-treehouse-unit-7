@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'; 
 
-
+//Navigation set up for pre-determined navigation elements
 const Nav = () => {
     return (
         <nav className="main-nav">

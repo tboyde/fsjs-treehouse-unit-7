@@ -11,7 +11,7 @@ import NotFound from './NotFound';
 import apiKey from '../configure'
 
 const PhotoList = (props) => {
-    //setting state for results and photo data that will be passed to the photo cards 
+    //setting state for search results and photo data 
     const [resultsLoading, setResultsLoading] = useState(false); 
     const [photoData, setPhotoData] = useState([]); 
     let params = useParams(); 
@@ -19,6 +19,7 @@ const PhotoList = (props) => {
     //setting variables for preset and phrase captured from user
     let searchTerm = params.searchPhrase ? params.searchPhrase : props.triggerSearchFor; 
 
+    //find photos function will render depening on the change in the search term
     useEffect(() => {
         findPhotos(searchTerm)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,6 +30,7 @@ const findPhotos = (phrase) => {
 
     setResultsLoading(true); 
 
+    //axios gets the results from the url, then takes the response and creates a photo component for object that is returned from response 
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${phrase}&per_page=24&extras=url_s&format=json&nojsoncallback=1`)
     .then(response => {
         let photos = response.data.photos.photo.map(photo =>{
@@ -43,15 +45,7 @@ const findPhotos = (phrase) => {
         .finally(()=> setResultsLoading(false))
 }
 
-// const checkStatus = (res) => {
-//     if (res.ok){
-//         return Promise.resolve(res)
-//     } else {
-//         return Promise.reject(new Error(res.statusText))
-//     }
-// }
-
-
+//if page is loading, user friendly message appears or the photoData list is rendered. Otherwise, a not found component will be rendered. 
 if (resultsLoading){
     return (
         <p>{`Finding Photos of ${searchTerm.toUpperCase()}...`}</p>
