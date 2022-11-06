@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Nav from './components/Nav';
 import SearchBar from './components/SearchBar';
 import PhotoList from './components/PhotoList';
-import NotFound from './components/NotFound';
+import PageNotFound from './components/404Error';
 
 
 const App = () => {
@@ -14,22 +14,21 @@ const App = () => {
 return (
   <>
   <div className='container'>
-  <SearchBar /> 
-  <Nav />
-  <div className="photo-list">
-    <h2>Results</h2>
-  <Routes>
-    <Route path="/" element={<Navigate to="/dancing" />}/>
-    <Route path="/dancing" element={<PhotoList triggerSearchFor="dancing"  />} />
-    <Route path="/painting" element={<PhotoList triggerSearchFor="painting" />} />
-    <Route path="/acting" element={<PhotoList triggerSearchFor="acting" />} />
-    <Route path="/search/:searchPhrase" element={<PhotoList />} /> 
-    <Route path="*" element={<NotFound />} />
-  </Routes>
-  </div>
+    <SearchBar /> 
+    <Nav />
+    <div className="photo-list">
+      <Routes>
+        <Route path="/" element={<Navigate to="/dancing" />}/>
+        <Route path="/dancing" element={<PhotoList triggerSearchFor="dancing"  />} />
+        <Route path="/painting" element={<PhotoList triggerSearchFor="painting" />} />
+        <Route path="/acting" element={<PhotoList triggerSearchFor="acting" />} />
+        <Route path="/search/:searchPhrase" element={<PhotoList />} /> 
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </div>
 </div>
 </>
-); 
+      ); 
 
 }
 

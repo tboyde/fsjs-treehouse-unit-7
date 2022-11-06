@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
- export default class SearchBar extends Component {
 
-  state = {
-    searchText: ''
+ const SearchBar = () =>  {
+  //referencing text entered into the search bar
+  const redirectTo = useNavigate(); 
+  let searchPhrase = useRef('');
+  let searchPhraseValue = searchPhrase.current.value; 
+
+
+  const onSearchChange = (e) => {
+    searchPhraseValue = e.target.value; 
   }
-  
-  onSearchChange = e => {
-    this.setState({ searchText: e.target.value });
-  }
-  
-  handleSubmit = e => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    //invoke the onserach function that fetches data
-    this.props.onSearch(this.query.value); 
-    e.currentTarget.reset();
+    //When button is pressed, page redirects to show images from searched phrase
+    redirectTo(`search/${searchPhraseValue}`); 
+    //resets search bar value
+    e.currentTarget.reset(); 
   }
-  
-  render() {  
-    return (
-       <form className="search-form">
+
+  return (
+       <form className="search-form" onSubmit={handleSubmit}>
         <input type="search" 
         name="search" 
         placeholder="Enter what you wish to see..." 
-        onChange = {this.onSearchChange}
-        ref = {(input) => this.query = input}
-        
+        ref={searchPhrase}
+        onChange={onSearchChange}
         required/>
         <button type="submit">
           <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -36,4 +38,6 @@ import React, { Component } from 'react';
       </form>
     );
   }
-}
+
+  export default SearchBar; 
+
